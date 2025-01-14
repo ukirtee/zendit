@@ -16,7 +16,7 @@ class TaskSeeder extends Seeder
     {
         Milestone::all()->each(function ($milestone) {
             Task::factory()
-                ->count(5) // Assuming 5 tasks per milestone
+                ->count(3) // Assuming 3 tasks per milestone
                 ->create(['milestone_id' => $milestone->id]);
         });
     }

@@ -16,7 +16,7 @@ class TimesheetSeeder extends Seeder
     {
         Task::all()->each(function ($task) {
             Timesheet::factory()
-                ->count(20) // Assuming 10 timesheet entries per task
+                ->count(5) // Assuming 5 timesheet entries per task
                 ->create(['task_id' => $task->id]);
         });
     }

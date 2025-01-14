@@ -19,12 +19,12 @@ class UserSeeder extends Seeder
         User::factory()->count(5)->create();
 
         // Create admin user with known credentials for testing
-        // User::create([
-        //     'name' => 'Admin User',
-        //     'email' => 'admin@zendit.com',
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('password'), // Always hash passwords
-        //     'remember_token' => Str::random(10),
-        // ]);
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@zendit.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'), // Always hash passwords
+            'remember_token' => Str::random(10),
+        ]);
     }
 }

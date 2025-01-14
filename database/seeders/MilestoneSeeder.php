@@ -16,7 +16,7 @@ class MilestoneSeeder extends Seeder
     {
         Wtg::all()->each(function ($wtg) {
             Milestone::factory()
-                ->count(5) // Assuming 5 milestones per WTG
+                ->count(2) // Assuming 2 milestones per WTG
                 ->create(['wtg_id' => $wtg->id]);
         });
     }
