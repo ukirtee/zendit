@@ -20,7 +20,6 @@ class TaskStatisticFactory extends Factory
             'task_id' => null, // This will be set dynamically in the seeder
             'actual_hours' => 0, // Will be calculated in the seeder
             'variance' => 0, // Will be calculated in the seeder
-            'last_updated' => now(),
         ];
     }
 }

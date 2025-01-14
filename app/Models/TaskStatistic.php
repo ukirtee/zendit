@@ -13,8 +13,15 @@ class TaskStatistic extends Model
         'task_id',
         'actual_hours',
         'variance',
-        'last_updated'
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'actual_hours' => 'float',
+            'variance' => 'float',
+        ];
+    }
 
     public function task()
     {

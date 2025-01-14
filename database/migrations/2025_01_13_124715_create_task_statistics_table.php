@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('task_id')->unique()->constrained('tasks')->onDelete('cascade');
             $table->decimal('actual_hours', 8, 2)->default(0.00);
             $table->decimal('variance', 8, 2)->default(0.00);
-            $table->timestamp('last_updated')->useCurrent();
             $table->timestamps();
         });
 
