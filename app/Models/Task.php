@@ -18,12 +18,19 @@ class Task extends Model
         'planned_hours'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'planned_hours' => 'float',
+        ];
+    }
+
     public function milestone()
     {
         return $this->belongsTo(Milestone::class);
     }
 
-    public function statistics()
+    public function taskStatistic()
     {
         return $this->hasOne(TaskStatistic::class);
     }
