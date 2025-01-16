@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Wtg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
@@ -87,5 +88,13 @@ class WtgController extends Controller
             ->paginate();
 
         return sendResponse($tasks);
+    }
+
+    // Fetch wtgs
+    public function get()
+    {
+        $wtgs = Wtg::all();
+
+        return sendResponse($wtgs);
     }
 }

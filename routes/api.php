@@ -18,4 +18,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('{wtgId}/tasks', [WtgController::class, 'getTasksWithVariance']);
         Route::get('{wtgId}/summary', [WtgController::class, 'getWtgSummary']);
     });
+
+    Route::get('wtgs', [WtgController::class, 'get']);
+
 });
