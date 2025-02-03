@@ -45,7 +45,7 @@ class GetWtgSummaryTest extends TestCase
                     'tasks_behind_schedule' => $tasks->filter(fn($task) => $task->taskStatistic->variance > 0)->count(),
                     'variance_statistics' => [
                         'average_variance' => round($tasks->avg(fn($task) => $task->taskStatistic->variance), 2),
-                        'max_variance' => $maxVariance,
+                        'max_variance' => round($maxVariance,2),
                     ],
                 ],
                 'message' => ''

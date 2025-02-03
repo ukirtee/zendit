@@ -97,4 +97,41 @@ class WtgController extends Controller
 
         return sendResponse($wtgs);
     }
+
+    public function getWtgSummaryWithDb($wtgId)
+    {
+        // $summary = Cache::remember("wtg_summarydb_$wtgId", 60, function () use ($wtgId) {
+        //fetch
+        $tasks = Task::whereHas('milestone', function ($query) use ($wtgId) {
+                $query->where('wtg_id', $wtgId);
+            })->with('timesheets')->get();
+
+            $totalPlanned = $tasks->sum('planned_hours');
+            $totalActual = $tasks->reduce(function ($carry, $task) {
+                return $carry + $task->timesheets->sum('hours_logged');
+            }, 0);
+
+            $varianceStats = $tasks->map(function ($task) {
+                $actualHours = $task->timesheets->sum('hours_logged');
+                return $actualHours - $task->planned_hours;
+            });
+
+            $response =  [
+                'total_planned_hours' => round($totalPlanned,2),
+                'total_actual_hours' => round($totalActual,2),
+                'tasks_behind_schedule' => $tasks->filter(function ($task) {
+                    $actualHours = $task->timesheets->sum('hours_logged');
+                    return $actualHours > $task->planned_hours;
+                })->count(),
+                'variance_statistics' => [
+                    'average_variance' => round($varianceStats->avg(), 2),
+                    'max_variance' => round($varianceStats->max(), 2),
+                ],
+            ];
+            // return $response;
+        // });
+
+        // return response()->json($summary);
+        return sendResponse($response);
+    }
 }

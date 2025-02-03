@@ -17,6 +17,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'wtg'], function () {
         Route::get('{wtgId}/tasks', [WtgController::class, 'getTasksWithVariance']);
         Route::get('{wtgId}/summary', [WtgController::class, 'getWtgSummary']);
+        Route::get('{wtgId}/summaryDb', [WtgController::class, 'getWtgSummaryWithDb']);
     });
 
     Route::get('wtgs', [WtgController::class, 'get']);
